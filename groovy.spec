@@ -4,7 +4,7 @@
 
 Name:           groovy
 Version:        1.8.9
-Release:        5%{?dist}
+Release:        7%{?dist}
 Summary:        Dynamic language for the Java Platform
 
 Group:          Development/Languages
@@ -59,6 +59,7 @@ Requires:       tomcat-jsp-2.2-api
 Requires:       junit
 Requires:       tomcat-servlet-3.0-api
 Requires:       xstream
+Requires:       java-devel >= 1.6
 
 
 %description
@@ -156,6 +157,13 @@ install -p -m644 pom.xml $RPM_BUILD_ROOT/%{_mavenpomdir}/JPP-%{name}.pom
 %doc LICENSE.txt LICENSE-2.0.txt NOTICE.txt cpl-v10.txt epl-v10.txt
 
 %changelog
+* Mon Jan 13 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.8.9-7
+- Add Requires on java-devel
+- Resolves: rhbz#1052291
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.8.9-6
+- Mass rebuild 2013-12-27
+
 * Thu Oct 24 2013 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.8.9-5
 - Remove desktop files
 
