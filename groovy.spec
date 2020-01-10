@@ -4,7 +4,7 @@
 
 Name:           groovy
 Version:        1.8.9
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Dynamic language for the Java Platform
 
 Group:          Development/Languages
@@ -22,6 +22,7 @@ Source5:        epl-v10.txt
 Source6:        http://www.apache.org/licenses/LICENSE-2.0.txt
 # http://jira.codehaus.org/browse/GROOVY-6085
 Patch0:         groovy-inner-interface-annotations.patch
+Patch1:         0006-CVE-2016-6814.patch
 BuildArch:      noarch
 
 BuildRequires:  ant
@@ -86,6 +87,7 @@ cp %{SOURCE4} %{SOURCE5} %{SOURCE6} .
 find \( -name *.jar -o -name *.class \) -delete
 
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir -p target/lib/{compile,tools}
@@ -157,6 +159,10 @@ install -p -m644 pom.xml $RPM_BUILD_ROOT/%{_mavenpomdir}/JPP-%{name}.pom
 %doc LICENSE.txt LICENSE-2.0.txt NOTICE.txt cpl-v10.txt epl-v10.txt
 
 %changelog
+* Tue Jul 11 2017 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.8.9-8
+- Fix Information disclosure vulnerability
+- Resolves: CVE-2016-6814
+
 * Mon Jan 13 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.8.9-7
 - Add Requires on java-devel
 - Resolves: rhbz#1052291
